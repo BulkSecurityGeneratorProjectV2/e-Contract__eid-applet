@@ -33,6 +33,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.nio.file.Files;
 import java.security.KeyPair;
 import java.security.Security;
 import java.security.cert.X509CRL;
@@ -252,7 +253,7 @@ public class XAdESSignatureFacetTest {
 		boolean validity = xmlSignature.validate(domValidateContext);
 		assertTrue(validity);
 
-		File tmpFile = File.createTempFile("xades-x-l-", ".xml");
+		File tmpFile = Files.createTempFile("xades-x-l-", ".xml").toFile();
 		FileUtils.writeStringToFile(tmpFile, PkiTestUtils.toString(signedDocument));
 		LOG.debug("tmp file: " + tmpFile.getAbsolutePath());
 
@@ -397,7 +398,7 @@ public class XAdESSignatureFacetTest {
 		boolean validity = xmlSignature.validate(domValidateContext);
 		assertTrue(validity);
 
-		File tmpFile = File.createTempFile("xades-bes-", ".xml");
+		File tmpFile = Files.createTempFile("xades-bes-", ".xml").toFile();
 		FileUtils.writeStringToFile(tmpFile, PkiTestUtils.toString(signedDocument));
 		LOG.debug("tmp file: " + tmpFile.getAbsolutePath());
 

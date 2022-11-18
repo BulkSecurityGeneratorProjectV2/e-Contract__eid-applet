@@ -29,6 +29,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.ServerSocket;
+import java.nio.file.Files;
 import java.security.InvalidKeyException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -192,7 +193,7 @@ public class AppletServiceServletTest {
 		DateTime notBefore = new DateTime();
 		DateTime notAfter = notBefore.plusMonths(1);
 		X509Certificate certificate = generateSelfSignedCertificate(keyPair, "CN=localhost", notBefore, notAfter);
-		File tmpP12File = File.createTempFile("ssl-", ".p12");
+		File tmpP12File = Files.createTempFile("ssl-", ".p12").toFile();
 		LOG.debug("p12 file: " + tmpP12File.getAbsolutePath());
 		persistKey(tmpP12File, keyPair.getPrivate(), certificate, "secret".toCharArray(), "secret".toCharArray());
 

@@ -43,6 +43,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
 import java.net.URL;
+import java.nio.file.Files;
 import java.security.KeyPair;
 import java.security.cert.X509Certificate;
 import java.util.Collections;
@@ -141,7 +142,7 @@ public class AbstractOOXMLSignatureServiceTest {
 		TemporaryDataStorage temporaryDataStorage = signatureService.getTemporaryDataStorage();
 		String preSignResult = IOUtils.toString(temporaryDataStorage.getTempInputStream());
 		LOG.debug("pre-sign result: " + preSignResult);
-		File tmpFile = File.createTempFile("ooxml-pre-sign-", ".xml");
+		File tmpFile = Files.createTempFile("ooxml-pre-sign-", ".xml").toFile();
 		FileUtils.writeStringToFile(tmpFile, preSignResult);
 		LOG.debug("tmp pre-sign file: " + tmpFile.getAbsolutePath());
 	}
@@ -227,7 +228,7 @@ public class AbstractOOXMLSignatureServiceTest {
 		TemporaryDataStorage temporaryDataStorage = signatureService.getTemporaryDataStorage();
 		String preSignResult = IOUtils.toString(temporaryDataStorage.getTempInputStream());
 		LOG.debug("pre-sign result: " + preSignResult);
-		File tmpFile = File.createTempFile("ooxml-pre-sign-", ".xml");
+		File tmpFile = Files.createTempFile("ooxml-pre-sign-", ".xml").toFile();
 		FileUtils.writeStringToFile(tmpFile, preSignResult);
 		LOG.debug("tmp pre-sign file: " + tmpFile.getAbsolutePath());
 
@@ -246,7 +247,7 @@ public class AbstractOOXMLSignatureServiceTest {
 		assertNotNull(signedOOXMLData);
 		LOG.debug("signed OOXML size: " + signedOOXMLData.length);
 		String extension = FilenameUtils.getExtension(ooxmlUrl.getFile());
-		tmpFile = File.createTempFile("ooxml-signed-", "." + extension);
+		tmpFile = Files.createTempFile("ooxml-signed-", "." + extension).toFile();
 		FileUtils.writeByteArrayToFile(tmpFile, signedOOXMLData);
 		LOG.debug("signed OOXML file: " + tmpFile.getAbsolutePath());
 		OOXMLSignatureVerifier verifier = new OOXMLSignatureVerifier();

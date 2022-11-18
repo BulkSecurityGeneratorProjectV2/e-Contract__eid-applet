@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.security.KeyPair;
 import java.security.cert.X509CRL;
 import java.security.cert.X509Certificate;
@@ -157,7 +158,7 @@ public class ASiCSignatureServiceTest {
 		testedInstance.postSign(signatureValue, signingCertificateChain);
 
 		// verify
-		File tmpFile = File.createTempFile("signed-container-", ".asice");
+		File tmpFile = Files.createTempFile("signed-container-", ".asice").toFile();
 		byte[] asicResult = resultOutputStream.toByteArray();
 		FileUtils.writeByteArrayToFile(tmpFile, asicResult);
 		LOG.debug("ASiC file: " + tmpFile.getAbsolutePath());

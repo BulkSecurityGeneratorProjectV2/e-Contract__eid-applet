@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.nio.file.Files;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -45,7 +46,7 @@ public class AppletProtocolMessageCatalogTest {
 
 	@Test
 	public void generateDocbook() throws Exception {
-		File tmpFile = File.createTempFile("docbook-", ".xml");
+		File tmpFile = Files.createTempFile("docbook-", ".xml").toFile();
 
 		generateDocbook(tmpFile);
 	}

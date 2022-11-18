@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.nio.file.Files;
 import java.security.KeyPair;
 import java.security.cert.X509Certificate;
 import java.util.Collections;
@@ -217,7 +218,7 @@ public class AbstractODFSignatureServiceTest {
 		byte[] signedODFData = odfSignatureService.getSignedODFData();
 		assertNotNull(signedODFData);
 		LOG.debug("signed ODF size: " + signedODFData.length);
-		File tmpFile = File.createTempFile("signed-", ".odt");
+		File tmpFile = Files.createTempFile("signed-", ".odt").toFile();
 		FileUtils.writeByteArrayToFile(tmpFile, signedODFData);
 		LOG.debug("signed ODF file: " + tmpFile.getAbsolutePath());
 		assertTrue(hasOdfSignature(tmpFile.toURI().toURL(), signatureCount));

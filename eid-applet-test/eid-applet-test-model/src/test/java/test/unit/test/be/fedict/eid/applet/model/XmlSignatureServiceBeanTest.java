@@ -32,6 +32,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.net.URI;
+import java.nio.file.Files;
 import java.security.InvalidKeyException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -244,7 +245,7 @@ public class XmlSignatureServiceBeanTest {
 		String signedDocumentStr = stringWriter.getBuffer().toString();
 		LOG.debug("signed document: " + signedDocumentStr);
 
-		File tmpFile = File.createTempFile("signature-", ".xml");
+		File tmpFile = Files.createTempFile("signature-", ".xml").toFile();
 		IOUtils.write(signedDocumentStr.getBytes(), new FileOutputStream(tmpFile));
 
 		StringReader stringReader = new StringReader(signedDocumentStr);
@@ -363,7 +364,7 @@ public class XmlSignatureServiceBeanTest {
 		String signedDocumentStr = stringWriter.getBuffer().toString();
 		LOG.debug("signed document: " + signedDocumentStr);
 
-		File tmpFile = File.createTempFile("xml-signature-", ".xml");
+		File tmpFile = Files.createTempFile("xml-signature-", ".xml").toFile();
 		FileUtils.writeStringToFile(tmpFile, signedDocumentStr);
 
 		StringReader stringReader = new StringReader(signedDocumentStr);

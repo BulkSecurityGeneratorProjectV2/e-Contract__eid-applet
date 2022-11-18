@@ -29,6 +29,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.GregorianCalendar;
 
 import javax.imageio.ImageIO;
@@ -192,7 +193,7 @@ public class PdfGeneratorTest {
 	}
 
 	private void toTmpFile(byte[] document) throws IOException {
-		File tmpFile = File.createTempFile("eid-", ".pdf");
+		File tmpFile = Files.createTempFile("eid-", ".pdf").toFile();
 		FileUtils.writeByteArrayToFile(tmpFile, document);
 		LOG.debug("tmp PDF file: " + tmpFile.getAbsolutePath());
 	}

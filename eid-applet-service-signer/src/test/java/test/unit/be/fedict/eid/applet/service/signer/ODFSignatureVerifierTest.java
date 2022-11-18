@@ -25,6 +25,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
 import java.security.cert.X509Certificate;
 import java.util.List;
 
@@ -133,7 +134,7 @@ public class ODFSignatureVerifierTest {
 	@Test
 	public void testNonODFFile() throws Exception {
 		// setup
-		File tmpFile = File.createTempFile("foo-bar-", ".txt");
+		File tmpFile = Files.createTempFile("foo-bar-", ".txt").toFile();
 		tmpFile.deleteOnExit();
 		FileUtils.writeStringToFile(tmpFile, "hello world");
 		URL tmpFileUrl = tmpFile.toURI().toURL();
@@ -148,7 +149,7 @@ public class ODFSignatureVerifierTest {
 	@Test
 	public void testIsNotODF() throws Exception {
 		// setup
-		File tmpFile = File.createTempFile("foo-bar-", ".txt");
+		File tmpFile = Files.createTempFile("foo-bar-", ".txt").toFile();
 		tmpFile.deleteOnExit();
 		FileUtils.writeStringToFile(tmpFile, "hello world");
 		URL tmpFileUrl = tmpFile.toURI().toURL();

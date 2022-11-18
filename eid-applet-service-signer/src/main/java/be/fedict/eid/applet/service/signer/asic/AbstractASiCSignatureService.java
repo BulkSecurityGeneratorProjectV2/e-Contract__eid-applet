@@ -25,6 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.List;
@@ -77,7 +78,7 @@ public class AbstractASiCSignatureService extends AbstractXmlSignatureService im
 		this.temporaryDataStorage = temporaryDataStorage;
 		this.documentOutputStream = documentOutputStream;
 
-		this.tmpFile = File.createTempFile("eid-dss-", ".asice");
+		this.tmpFile = Files.createTempFile("eid-dss-", ".asice").toFile();
 		FileOutputStream fileOutputStream;
 		fileOutputStream = new FileOutputStream(this.tmpFile);
 		IOUtils.copy(documentInputStream, fileOutputStream);
